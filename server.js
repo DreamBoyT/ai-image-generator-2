@@ -3,11 +3,19 @@ const path = require("path");
 const axios = require("axios");
 
 const app = express();
-const port = process.env.PORT || 3000; // Use environment variable for port or default to 3000
+const port = process.env.PORT || 3000;
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
+
+// CORS middleware
+app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "https://witty-beach-08e74421e.5.azurestaticapps.net");
+    res.header("Access-Control-Allow-Methods", "GET, POST");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    next();
+});
 
 // Endpoint for generating images
 app.post("/generate", async (req, res) => {
