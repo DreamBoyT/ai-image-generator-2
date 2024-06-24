@@ -3,12 +3,13 @@ const path = require("path");
 const axios = require("axios");
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use environment variable for port or default to 3000
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.json());
 
+// Endpoint for generating images
 app.post("/generate", async (req, res) => {
     const { prompt, size, style, quality } = req.body;
 
@@ -16,7 +17,7 @@ app.post("/generate", async (req, res) => {
     const modifiedPrompt = `${prompt}, style: ${style}, quality: ${quality}`;
 
     try {
-        // Call the Azure Function
+        // Make a POST request to Azure Function
         const response = await axios.post('https://tamil-fun-app-3.azurewebsites.net/api/HttpTrigger10', {
             prompt: modifiedPrompt,
             size: size
@@ -24,12 +25,13 @@ app.post("/generate", async (req, res) => {
 
         const imageUrls = response.data.imageUrls;
         res.json({ imageUrls });
-    } catch (err) {
-        console.error("Error generating image:", err);
-        res.status(500).json({ error: "Failed to generate image" });
+    } catch (error) {
+        console.error('Error generating images:', error);
+        res.status(500).json({ error: 'Failed to generate images' });
     }
 });
 
+// Start server
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });
