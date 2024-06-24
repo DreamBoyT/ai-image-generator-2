@@ -19,7 +19,7 @@ module.exports = async function (context, req) {
         context.res = {
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://witty-wave-0feef0100.5.azurestaticapps.net',
+                'Access-Control-Allow-Origin': 'https://witty-beach-08e74421e.5.azurestaticapps.net',
                 'Access-Control-Allow-Methods': 'GET, POST',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
@@ -31,7 +31,7 @@ module.exports = async function (context, req) {
             status: 500,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': 'https://witty-wave-0feef0100.5.azurestaticapps.net',
+                'Access-Control-Allow-Origin': 'https://witty-beach-08e74421e.5.azurestaticapps.net',
                 'Access-Control-Allow-Methods': 'GET, POST',
                 'Access-Control-Allow-Headers': 'Content-Type'
             },
