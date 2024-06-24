@@ -12,7 +12,7 @@ module.exports = async function (context, req) {
     const { prompt, size } = req.body;
 
     try {
-        // Request image generation from OpenAI
+       
         const results = await client.getImages(deploymentName, prompt, { n: 1, size });
         const imageUrls = results.data.map(image => image.url);
 
