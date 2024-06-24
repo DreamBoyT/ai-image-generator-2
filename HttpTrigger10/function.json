@@ -6,7 +6,6 @@
       "direction": "in",
       "name": "req",
       "methods": [
-        "get",
         "post"
       ],
       "route": "HttpTrigger10"
@@ -14,14 +13,14 @@
     {
       "type": "http",
       "direction": "out",
-      "name": "res"
+      "name": "res",
+      "headers": {
+        "Content-Type": "application/json",
+        "Access-Control-Allow-Origin": "https://witty-beach-08e74421e.5.azurestaticapps.net",
+        "Access-Control-Allow-Methods": "GET, POST",
+        "Access-Control-Allow-Headers": "Content-Type"
+      }
     }
   ],
-  "scriptFile": "../server.js",
-  "disabled": false,
-  "extensions": {
-    "http": {
-      "routePrefix": ""
-    }
-  }
+  "disabled": false
 }
